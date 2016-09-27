@@ -381,7 +381,7 @@ public class RoverService extends AbstractDefaultService implements
             if(ri.getTask() != null) {
                 throw new Exception("Client already has a task: " + ri.getTask());
             }
-s
+
             if(speed > ri.getSpeed()) {
                 throw new Exception("Speed is greater than client's max speed");
             }
