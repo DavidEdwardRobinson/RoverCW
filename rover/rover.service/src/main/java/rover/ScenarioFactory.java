@@ -29,6 +29,11 @@ public class ScenarioFactory {
     public boolean addScenario(int id, int width, int height, int resources, int resourceDist, int energy, boolean competitive){
         return scenarios.add(new Scenario(id,width,height,resources,resourceDist,energy,competitive));
     }
+
+    public boolean addScenario(int id, int width, int height, int resources, int resourceDist, int energy, boolean competitive, resourceTypes, resourceTypeDist){
+        return scenarios.add(new Scenario(id,width,height,resources,resourceDist,energy,competitive,resourceTypes,resourceTypeDist));
+    }
+
     public boolean serializeScenarios(String directory){
 
         boolean error  =false;
@@ -95,6 +100,7 @@ public class ScenarioFactory {
         creator.addScenario(3,100,100,10,1,1000,false);
         creator.addScenario(4,200,200,15,1,500,false);
         creator.addScenario(5,500,500,30,2,1000,true);
+        creator.addScenario(5,500,500,30,2,1000,false, 2, [1, 1]);
         creator.serializeScenarios("scenarios");
     }
 

@@ -295,6 +295,9 @@ public class RoverService extends AbstractDefaultService implements
             for(ResourceInfo rsi : getResources()) {
                 if(calcDistance(ri.getX(), ri.getY(), rsi.getX(), rsi.getY()) < .1) {
                     if(rsi.getCount() > 0) {
+                        if (rsi.getType() != ri.getCollector()) {
+				throw new Exception("Rover has wrong collector type for resource");
+			}
                         rs = rsi;
                         break;
                     }
@@ -378,7 +381,7 @@ public class RoverService extends AbstractDefaultService implements
             if(ri.getTask() != null) {
                 throw new Exception("Client already has a task: " + ri.getTask());
             }
-
+s
             if(speed > ri.getSpeed()) {
                 throw new Exception("Speed is greater than client's max speed");
             }
@@ -424,6 +427,12 @@ public class RoverService extends AbstractDefaultService implements
     @Override
     public void setAttributes(String client, int speed, int scanRange,
                               int maxLoad) throws Exception {
+        this.setAttributes(client,speed,scanRange,maxLoad,1);
+    }
+
+    @Override
+    public void setAttributes(String client, int speed, int scanRange,
+                              int maxLoad, int collector) throws Exception {
 
         if(started) {
             throw new Exception("attributes can't be changed after the world has been started");
@@ -451,6 +460,7 @@ public class RoverService extends AbstractDefaultService implements
             ri.setSpeed(speed);
             ri.setScanRange(scanRange);
             ri.setMaxLoad(maxLoad);
+            ri.setCollector(collector);
         }
 
     }

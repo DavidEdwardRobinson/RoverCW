@@ -15,15 +15,21 @@ public class ScanItem implements Serializable {
 
 	
 	private int itemType;
+        private int resourceType;
 	
 	private double xOffset;
 	private double yOffset;
 	
 	
-	public ScanItem(int itemType, double xOffset, double yOffset) {
+	public ScanItem(int itemType, double xOffset, double yOffset, int resourceType) {
 		this.itemType = itemType;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+                this.resourceType = resourceType;
+	}
+
+	public ScanItem(int itemType, double xOffset, double yOffset) {
+		this(itemType,xOffset,yOffset,0);
 	}
 	
 	public ScanItem(String s) {
@@ -59,6 +65,10 @@ public class ScanItem implements Serializable {
 	public void setyOffset(double yOffset) {
 		this.yOffset = yOffset;
 	}
+
+        public int getResourceType() {
+            return resourceType;
+        }
 	
 	@Override
 	public String toString() {
@@ -71,7 +81,9 @@ public class ScanItem implements Serializable {
 			type = "base";
 		}
 		
-		return type + "," + xOffset + "," + yOffset;
+		String returnString = type + "," + xOffset + "," + yOffset;
+                if (itemType == 1) { returnString += "," + resourceType; }
+		return returnString;
 	}
 	
 	

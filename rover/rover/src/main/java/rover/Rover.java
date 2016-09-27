@@ -204,7 +204,7 @@ public abstract class Rover extends Agent {
     }
 
     //set the attributes for this rover.  Must be done before the world starts.
-    public void setAttributes(int speed, int scanRange, int maxLoad) throws Exception {
+    public void setAttributes(int speed, int scanRange, int maxLoad, int collector) throws Exception {
 
         if (started) {
             throw new Exception("attributes can't be changed after the world has been started");
@@ -219,6 +219,11 @@ public abstract class Rover extends Agent {
         this.speed = speed;
         this.scanRange = scanRange;
         this.maxLoad = maxLoad;
+        this.collector = collector;
+    }
+
+    public void setAttributes(int speed, int scanRange, int maxLoad) throws Exception {
+        this.setAttributes(speed,scanRange,maxLoad,1);
     }
 
     /**
