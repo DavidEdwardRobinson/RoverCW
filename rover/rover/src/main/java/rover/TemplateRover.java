@@ -76,6 +76,20 @@ public class TemplateRover extends Rover {
 			for(ScanItem item : pr.getScanItems()) {
 				if(item.getItemType() == ScanItem.RESOURCE) {
                     getLog().info("Resource found at: " + item.getxOffset() + ", " + item.getyOffset() + " Type: "+item.getResourceType());
+		    if (item.getxOffset() < 0.1 && item.getyOffset() < 0.1) { 
+try {
+				collect();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		 } else {
+try {
+                getLog().info("Moving...");
+				move(item.getxOffset(), item.getyOffset(), 4);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		     }
 				} else if(item.getItemType() == ScanItem.BASE) {
                     getLog().info("Base found at: " + item.getxOffset() + ", " + item.getyOffset());
 				} else {
@@ -94,7 +108,12 @@ public class TemplateRover extends Rover {
 			break;
 		case PollResult.COLLECT:
             getLog().info("Collect complete.");
-			
+			try {
+                getLog().info("Moving...");
+				move(1,1,4);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			break;
 		case PollResult.DEPOSIT:
             getLog().info("Deposit complete.");

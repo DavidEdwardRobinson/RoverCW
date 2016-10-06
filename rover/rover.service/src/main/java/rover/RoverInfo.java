@@ -51,7 +51,7 @@ public class RoverInfo {
             return collector;
         }
 
-        public int setCollector(int collector) {
+        public void setCollector(int collector) {
             this.collector = collector;
         }
 	

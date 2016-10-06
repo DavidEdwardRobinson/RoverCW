@@ -31,11 +31,11 @@ public class Scenario {
     @Element(name="isCompetitive")
     private boolean isCompetitive = false;
 
-    @Element(name="resourceTypes")
+    @Element(name="resourceTypes", required=false)
     private int resourceTypes = 1;
 
-    @Element(name="resourceTypeDist")
-    private int[] resourceTypeDist = [1]
+    @Element(name="resourceTypeDist",required=false)
+    private int[] resourceTypeDist;
 
     public static Scenario Empty(){
         return new Scenario(0,0,0,0,0,200,false);
@@ -56,7 +56,7 @@ public class Scenario {
 
     public Scenario(@Attribute(name="id") int id,@Element(name="width") int width,@Element(name="height") int height,
                     @Element(name="resources") int resources,@Element(name="resourceDistribution") int resourceDist, @Element(name="energy") int energy,@Element(name="isCompetitive") boolean competitive) {
-        this(id, width, height, resources, resourceDist, energy, competitive, 1, [1]);
+        this(id, width, height, resources, resourceDist, energy, competitive, 1,new int[]{1});
     }
 
     public int getWidth(){
@@ -74,6 +74,15 @@ public class Scenario {
     public int getEnergy(){
         return initialEnergy;
     }
+ 
+    public int getResourceTypes() {
+	return resourceTypes;
+    }
+
+    public int[] getResourceTypeDist() {
+	return resourceTypeDist;
+    }
+
     public boolean isCompetitive(){
         return isCompetitive;
     }

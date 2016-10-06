@@ -122,10 +122,12 @@ public class MonitorInfo  implements Serializable {
 	
 	public class Resource extends WorldObject implements Serializable {
 		private int count;
+		private int type;
 
-		public Resource(double x, double y, int count) {
+		public Resource(double x, double y, int count, int type) {
 			super(x,y);
 			this.count = count;
+			this.type = type;
 		}
 		
 		public int getCount() {
@@ -134,6 +136,14 @@ public class MonitorInfo  implements Serializable {
 
 		public void setCount(int count) {
 			this.count = count;
+		}
+
+		public int getType() {
+			return type;
+		}
+
+		public void setType(int type) {
+			this.type = type;
 		}
 	}
 	

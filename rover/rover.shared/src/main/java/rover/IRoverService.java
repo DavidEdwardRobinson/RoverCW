@@ -47,6 +47,7 @@ public interface IRoverService extends Service {
 	
 	String registerClient(String team) throws Exception;
 	void setAttributes(String clientKey, int speed, int scanRange, int maxLoad) throws Exception;
+	void setAttributes(String client, int speed, int scanRange, int maxLoad, int collector) throws Exception;
 	
 	PollResult Poll(String clientKey) throws Exception;
 	

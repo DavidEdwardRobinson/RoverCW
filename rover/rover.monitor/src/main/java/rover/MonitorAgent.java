@@ -30,7 +30,7 @@ public class MonitorAgent extends Agent  {
 		MonitorInfo mi = new MonitorInfo(0, 0);
 		Rover r = mi.new Rover(0, 0, "");
 		Team t = mi.new Team(0, 0, "", 0);
-		Resource rs = mi.new Resource(0, 0, 0);
+		Resource rs = mi.new Resource(0, 0, 0, 1);
 		
 	}
 

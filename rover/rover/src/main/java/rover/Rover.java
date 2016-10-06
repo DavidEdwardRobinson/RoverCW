@@ -22,6 +22,7 @@ public abstract class Rover extends Agent {
     private int speed;
     private int scanRange;
     private int maxLoad;
+    private int collector;
 
     private boolean started;
 
