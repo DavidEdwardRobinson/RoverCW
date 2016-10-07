@@ -57,7 +57,8 @@ public class MonitorInfo  implements Serializable {
 		private String key;
 		private int speed;
 		private int scanRange;
-		private int maxLoad;		
+		private int maxLoad;	
+		private int collector;	
 		private int currentLoad;		
 		private double energy;
 		private int task;
@@ -91,6 +92,14 @@ public class MonitorInfo  implements Serializable {
 		}
 		public void setCurrentLoad(int currentLoad) {
 			this.currentLoad = currentLoad;
+		}
+
+		public int getCollector() {
+			return collector;
+		}
+
+		public void setCollector(int collector) {
+			this.collector = collector;
 		}
 		public double getEnergy() {
 			return energy;

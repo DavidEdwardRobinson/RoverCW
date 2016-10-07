@@ -697,6 +697,7 @@ public class RoverService extends AbstractDefaultService implements
                 r.setMaxLoad(ri.getMaxLoad());
                 r.setScanRange(ri.getScanRange());
                 r.setSpeed(ri.getSpeed());
+		r.setCollector(ri.getCollector());
 
                 if(ri.getTask() != null) {
                     r.setTask(ri.getTask().taskNum());

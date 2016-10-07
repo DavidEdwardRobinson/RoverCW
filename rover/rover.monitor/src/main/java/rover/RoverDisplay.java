@@ -197,7 +197,7 @@ public class RoverDisplay extends JFrame implements ActionListener,WindowListene
 			Object[] rov = { ri.getKey(), ri.getX(), ri.getY(), 
 						task, (int) (ri.getTaskCompletion() * 100), 
 						ri.getCurrentLoad(), ri.getEnergy(),
-						ri.getSpeed(), ri.getScanRange(), ri.getMaxLoad() };
+						ri.getSpeed(), ri.getScanRange(), ri.getMaxLoad(), ri.getCollector() };
 			
 			rovers.add(rov);
 			

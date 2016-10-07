@@ -17,7 +17,7 @@ public class TemplateRover extends Rover {
 			//speed, scan range, max load
 			//has to add up to <= 9
 			//Fourth attribute is the collector type
-			setAttributes(4, 4, 1, 1);
+			setAttributes(4, 4, 1, 2);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,17 +78,20 @@ public class TemplateRover extends Rover {
                     getLog().info("Resource found at: " + item.getxOffset() + ", " + item.getyOffset() + " Type: "+item.getResourceType());
 		    if (item.getxOffset() < 0.1 && item.getyOffset() < 0.1) { 
 try {
+				getLog().info("Attempting a collect!");
 				collect();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			break;
 		 } else {
 try {
-                getLog().info("Moving...");
+                getLog().info("Moving to resource.");
 				move(item.getxOffset(), item.getyOffset(), 4);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			break;
 		     }
 				} else if(item.getItemType() == ScanItem.BASE) {
                     getLog().info("Base found at: " + item.getxOffset() + ", " + item.getyOffset());
