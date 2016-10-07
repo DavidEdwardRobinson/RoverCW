@@ -113,7 +113,7 @@ public class RoverService extends AbstractDefaultService implements
 	int sum = 0; for (int i = 0; i < resourceTypeDist.length; i++) { sum += resourceTypeDist[i]; }
 	int val = rand.nextInt(sum);
 	int culm = 0; int current = 1;
-	while (val <= culm) { culm += resourceTypeDist[current-1]; if (val <= culm) { current++; }  }
+	while ((val <= culm) && (current < resourceTypeDist.length)) { culm += resourceTypeDist[current-1]; if (val <= culm) { current++; }  }
 	return current;
     }
 
