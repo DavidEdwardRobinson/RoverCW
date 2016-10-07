@@ -17,7 +17,7 @@ public class TemplateRover extends Rover {
 			//speed, scan range, max load
 			//has to add up to <= 9
 			//Fourth attribute is the collector type
-			setAttributes(4, 4, 1, 2);
+			setAttributes(4, 4, 1, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
