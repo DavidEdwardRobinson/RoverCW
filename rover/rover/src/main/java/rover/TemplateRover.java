@@ -10,14 +10,14 @@ public class TemplateRover extends Rover {
         super();
 
 		//use your username for team name
-		setTeam("template");
+		setTeam("der26");
 		
 		try {
 			//set attributes for this rover
 			//speed, scan range, max load
 			//has to add up to <= 9
 			//Fourth attribute is the collector type
-			setAttributes(4, 4, 1, 1);
+			setAttributes(1, 4, 3, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,10 +47,9 @@ public class TemplateRover extends Rover {
 
 	@Override
 	void poll(PollResult pr) {
-		// This is called when one of the actions has completed
 
         getLog().info("Remaining Power: " + getEnergy());
-		
+
 		if(pr.getResultStatus() == PollResult.FAILED) {
             getLog().info("Ran out of power...");
 			return;
@@ -126,3 +125,6 @@ try {
 	}
 
 }
+/*
+Individual rover logic, scan
+ */
