@@ -27,7 +27,7 @@ public class IndividualRover extends MyRover {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.roverInfo=new RoverInfo(speed,capacity,getEnergy(),scanRange,resourceType);
+        //this.roverInfo=new RoverInfo(speed,capacity,getEnergy(),scanRange,resourceType);
 
     }
 

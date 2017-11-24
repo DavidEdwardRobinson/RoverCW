@@ -1,26 +1,40 @@
 package rover;
 
+import java.awt.geom.Point2D;
+
 public class RoverInfo {
     private int speed;
     private int capacity;
     private double energy;
     private int scanRange;
     private int resourceType;
+    private Point2D.Double relativePosition;
 
-    RoverInfo(){
+    public  RoverInfo(){
 
     }
 
-    public RoverInfo(int speed, int capacity, double energy, int scanRange, int resourceType) {
+    public RoverInfo(int speed, int capacity, double energy, int scanRange, int resourceType, Point2D.Double relativePosition) {
         this.speed=speed;
         this.capacity=capacity;
         this.energy=energy;
         this.scanRange=scanRange;
         this.resourceType=resourceType;
+        this.relativePosition=relativePosition;
     }
+
+
 
     public int getSpeed() {
         return speed;
+    }
+
+    public int getScanRange() {
+        return scanRange;
+    }
+
+    public int getResourceType() {
+        return resourceType;
     }
 
     public int getCapacity() {
@@ -39,16 +53,15 @@ public class RoverInfo {
         this.energy = energy;
     }
 
-    public int getScanRange() {
-        return scanRange;
+    public Point2D.Double getRelativePosition() {
+        return relativePosition;
+    }
+
+    public void  setRelativePosition(double x, double y) {
+       relativePosition.setLocation(x, y);
     }
 
 
-    public int getResourceType() {
-        return resourceType;
-    }
-
-//after every action by every rover, do energy=getEnergy();
 
 }
 
