@@ -1,44 +1,37 @@
 package rover;
 
-;
-import java.awt.geom.Point2D;
-import java.util.HashMap;
 import java.util.Random;
-import  java.lang.Object;
+/*
+Start after scan complete message received
+When collecting a resource
 
+ */
 
+public class CarryRover extends MyRover {
 
-public class IndividualRover extends MyRover {
-
-
-    public IndividualRover() {
+    public CarryRover() {
         super();
-        int speed=4;
-        int scanRange=4;
-        int capacity=1;
-        int resourceType=1;
+
 
         try {
             //set attributes for this rover
             //speed, scan range, max load
             //has to add up to <= 9
             //Fourth attribute is the collector type
-            setAttributes(speed, scanRange, capacity, resourceType);
+            setAttributes(1, 8, 0, 1);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        this.roverInfo=new RoverInfo(speed,capacity,getEnergy(),scanRange,resourceType);
 
     }
 
+    void collectDecision(){
+        //calc if enough energy to get to base with resource and another resource
+        //if this rover is closest to resource, go collect it
+        //if this rover has the capacity
+        if (roverInfo.getCapacity() ==0){return;}
 
-
-
-    /*
-    scan range is r/2
-    for each scan move sqrt(d^2/2) biggest square in circle where d = diameter
-    then move up by sqrt(d^2/2) and so on so forth
-     */
+    }
 
 
     @Override
@@ -61,8 +54,6 @@ public class IndividualRover extends MyRover {
         // the agent is killed after this
         getLog().info("END!");
     }
-
-
 
     @Override
     void poll(PollResult pr) {

@@ -1,0 +1,6 @@
+wait til all the scans complete
+then go off and find the resources, closest first
+
+
+for bigger scenario, send out scan bot, then divide the map into relative quarters and send collect bots out
+
