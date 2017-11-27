@@ -12,18 +12,22 @@ import java.util.Random;
 * broadcast scan complete
 *
 * Hardcode the distribution of resources, i.e
+*
+* Get scan rover to distribute the work to the other rovers at the end with SCANCOMPLTE broadcast?
+* i.e SCANCOMPLETE
+* split the map into equally weighted parts so collect rovers 1 and collect rovers2 all collect same amount
+* ROVERCOMMAND,
 * */
 
 
 //WHEN SCANNING, DON'T ATTEMPT TO BROADCAST LOCATIONS ALREADY FOUND
 
-public class ScanRover extends MyRover {
-        int toScan;
+public class
+
+ScanRover extends MyRover {
 
     public ScanRover() {
         super();
-        toScan=getWorldResources(); //decrease as scan returns
-
         try {
             //set attributes for this rover
             //speed, scan range, max load
@@ -54,5 +58,8 @@ public class ScanRover extends MyRover {
     void scanComplete(){
         broadCastToTeam("SCANCOMPLETE");
     }
+
+
+
 
 }

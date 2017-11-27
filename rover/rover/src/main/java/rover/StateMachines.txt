@@ -1,0 +1,15 @@
+
+
+
+
+Scan:
+Whilst scan not complete, scan method
+Stop forever
+
+Collect
+divide map radially into 360/No rovers, using polar coordinates
+for that radial, calculate shortest route between the points
+follow route calculating energy
+
+Competitive:
+
