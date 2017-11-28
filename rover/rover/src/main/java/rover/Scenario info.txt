@@ -1,0 +1,52 @@
+
+
+Hi all,
+
+As it says in the specification, here is the breakdown of marks for each scenario.
+Each scenario is marked on the percentage of resources you obtain for that scenario, with 100% collection being 100% of that mark.
+The exception to this is the competitive scenario, where you're marked proportionally to the number of competitors.
+
+Scenario Mark breakdown Scenario         	Competitive           	Marks
+    0 	N 	5
+    1 	N 	5
+    2 	N 	10
+    3 	N 	10
+    4 	N 	15
+    5 	Y 	5
+    6 	N 	15
+    7 	N 	15
+    8 	N 	15
+    9 	 Y 	 5
+ Total 	 - 	 100
+
+ Scenarios
+
+ Scenario 0: 20x20 map, 1x10 resources, 5000 energy, 1 rover.
+
+ Scenario 1: 40x40 map, 5x5 resources, 5000 energy, 1 rover.
+
+ Scenario 2: 80x80 map, 10x5 resources, 1000 energy, 3 rovers.
+
+ Scenario 3: 100x100 map, 10x1 resources, 1000 energy, 3 rovers.
+
+ Scenario 4: 200x200 map, 15x1 resources, 500 energy, 10 rovers.
+
+ Scenario 5: 500x500 map, 30x2 resources, 1000 energy, 5 rovers, competitive.
+
+ Scenario 6: 100x100 map, 10x1 resources (2 types, 50/50 split), 1000 energy, 5 rovers.
+
+ Scenario 7: 250x250 map, 25x5 resources (2 types, 25/75 split), 1000 energy, 10 rovers.
+
+ Scenario 8: 200x500 map, 5x15 resources (2 types, 50/50 split), 2000 energy, 10 rovers.
+
+ Scenario 9: 750x750 map, 50x2 resources (2 types, 50/50 split), 2000 energy, 5 rovers, competitive.
+
+ Expected mark (Ran 10 times)
+ S0:
+ S1:
+ S2:
+ S3:
+ S4:
+ S6:
+ S7:
+ S8:

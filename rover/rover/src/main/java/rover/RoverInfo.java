@@ -4,17 +4,19 @@ import java.awt.geom.Point2D;
 
 public class RoverInfo {
     private int speed;
+    private final int maxCapacity;
     private int capacity;
     private double energy;
-    private int scanRange;
+    private double scanRange;
     private int resourceType;
     private Point2D.Double relativePosition;
 
-    public  RoverInfo(){
+//    public  RoverInfo(){
+//
+//    }
 
-    }
-
-    public RoverInfo(int speed, int capacity, double energy, int scanRange, int resourceType, Point2D.Double relativePosition) {
+    public RoverInfo(int speed, int capacity, double energy, double scanRange, int resourceType, Point2D.Double relativePosition, int maxCapacity) {
+        this.maxCapacity=maxCapacity;
         this.speed=speed;
         this.capacity=capacity;
         this.energy=energy;
@@ -29,7 +31,7 @@ public class RoverInfo {
         return speed;
     }
 
-    public int getScanRange() {
+    public double getScanRange() {
         return scanRange;
     }
 
@@ -61,6 +63,9 @@ public class RoverInfo {
        relativePosition.setLocation(x, y);
     }
 
+    public int getMaxCapacity(){
+        return maxCapacity;
+    }
 
 
 }
