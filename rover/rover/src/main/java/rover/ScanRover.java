@@ -1,5 +1,7 @@
 package rover;
 
+import java.awt.geom.Point2D;
+import java.util.HashMap;
 import java.util.Random;
 /*
 * Scan x has r=2x
@@ -42,22 +44,123 @@ ScanRover extends MyRover {
 
     @Override
     void begin() {
+        getLog().info("BEGIN!");
+        int speed = 1;
+        int capacity = 0;
+        double scanRange = 8;
+        int resourceType = 1;
+        roverInfo = new RoverInfo(speed, capacity, getEnergy(), scanRange, resourceType, new Point2D.Double(0, 0), capacity);
+        scanComplete = false;
+        scanSquareLength = Math.sqrt(Math.pow(4 * scanRange, 2) / 2);
+        noXScans = (int) Math.ceil(getWorldWidth() / scanSquareLength);
+        resourceMap = new HashMap<>();
+        roverMap = new HashMap<>();
+        scanIndex = 0;
+        toScan = getWorldResources();
+        scanX = 1; //start with scan, set index to 1,1
+
+        try {
+            //move somewhere initially
+
+            scan(scanRange);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     void end() {
+        // called when the world is stopped
+        // the agent is killed after this
+        getLog().info("END!");
 
     }
 
     @Override
     void poll(PollResult pr) {
+        getLog().info("Remaining Power: " + getEnergy());
+        if (pr.getResultStatus() == PollResult.FAILED) {
+            getLog().info("Ran out of power...");
+            return;
+        }
+        roverInfo.setEnergy(getEnergy()); //set energy for each poll
+        resourcePrint();
 
+        switch (pr.getResultType()) {
+            case PollResult.MOVE:          //when finished a move, scan if scan not complete
+                if(!scanComplete){
+                    try {
+                        scan(roverInfo.getScanRange());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } else{
+                    try {
+                        //broadcast Scan complete
+                        move(0, 0, roverInfo.getSpeed()); //restablish move control
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                break;
+
+            case PollResult.SCAN:           //when finished a scan, move to next scan position, and store result
+
+                for (ScanItem item : pr.getScanItems()) {
+                    if (item.getItemType() == ScanItem.RESOURCE) {
+                        recordScan(item);
+                    }
+                }
+                getLog().info("Scan instance recorded");
+                if(!scanComplete) {
+                    try {
+                        moveNextScanPosition();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        }
+                }else {
+                    try {
+                        //broadcast Scan complete
+                        move(0, 0, roverInfo.getSpeed()); //restablish move control
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+
+                break;
+
+            case PollResult.COLLECT:                    //should never have a collect pr, if it does, send back to move
+                try {
+                    move(0, 0, roverInfo.getSpeed()); //restablish move control
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+
+            case PollResult.DEPOSIT:                    //should never have a deposit pr, if it does, send back to move
+                try {
+                    move(0, 0, roverInfo.getSpeed()); //restablish move control
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+
+        }
     }
 
-    void scanComplete(){
+    public void scanComplete(){
         broadCastToTeam("SCANCOMPLETE");
     }
+
+    public void delegateMap(){
+
+    }
+
+
 
 
 
