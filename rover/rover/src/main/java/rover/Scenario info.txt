@@ -50,3 +50,102 @@ Scenario Mark breakdown Scenario         	Competitive           	Marks
  S6:
  S7:
  S8:
+
+ void parseMessages() {
+         myMessages=messages;
+         System.out.println("Rover ID: " + getID() + " ATTEMPTING TO PARSE MESSAGE");
+         System.out.println("Rover ID: " + getID() + " Size of messages: " + messages.size());
+         String[] messagesArray = messages.toArray(new String[messages.size()]);        //array of all received messages
+         System.out.println("Rover ID: " + getID() + " Messages Array: " + messagesArray.toString());
+         for (int i = 0; i < messages.size(); i++) {
+             System.out.println("Rover ID: " + getID() + messagesArray[i]);
+         }
+             if (messages.size()!=0){
+                 for (int i = 0; i < messages.size(); i++) {                                    //for all messages in array
+                     List<String> message = Arrays.asList(messagesArray[i].split(","));  //convert message into string array on ,
+                     String[] messageArray = message.toArray(new String[message.size()]);
+                     System.out.println("Rover ID: " + getID() + " Received message: " +messagesArray[i]);
+                     System.out.println("Rover ID: " + getID() + " Switch on: " + messageArray[i]);
+                     switch (messageArray[0]) {                                                 //first string indicates message type
+
+                         //format:RESOURCE,indexInt,xDouble,yDouble,typeInt
+                         case "RESOURCE":
+                             double resX = Double.parseDouble(messageArray[2]);
+                             double resY = Double.parseDouble(messageArray[3]);
+                             int resType = Integer.parseInt(messageArray[4]);
+                             Point2D.Double resCoord = new Point2D.Double(resX, resY);
+                             ResourceInfo resourceInfo = new ResourceInfo(resType, amountFromScenario(getScenario()), resCoord);
+                             resourceMap.put(Integer.parseInt(messageArray[1]), resourceInfo);
+                             break;
+
+                         //format:"ROVER",idStr,xDouble,yDouble,intSpeed,intCapacity,doubleEnergy,intScan,intType,intScannerNo
+                         case "ROVER":
+                             System.out.println("Rover ID: " + getID() + " Sending Rover message " + message);
+                             double rovX = Double.parseDouble(messageArray[2]);
+                             double rovY = Double.parseDouble(messageArray[3]);
+                             Point2D.Double rovCoord = new Point2D.Double(rovX, rovY);
+
+                             RoverInfo roverInfo = new RoverInfo(Integer.parseInt(messageArray[4]),
+                                     Integer.parseInt(messageArray[5]), Double.parseDouble(messageArray[6])
+                                     , Integer.parseInt(messageArray[7]), Integer.parseInt(messageArray[8]),
+                                     rovCoord,Integer.parseInt(messageArray[9]));
+                             roverMap.remove(messageArray[1]);
+                             roverMap.put(messageArray[1], roverInfo);
+                             break;
+
+                         //format:SCANCOMPLETE
+                         case "SCANCOMPLETE":
+                             scanComplete=true;
+                             break;
+
+                         //format:COLLECTED,intNumber
+                         case "COLLECTED":
+                             Integer resIndex =Integer.parseInt(messageArray[1]);
+                             int remaining =resourceMap.get(resIndex).getAmount() - 1;
+                             int type = resourceMap.get(resIndex).getType();
+                             Point2D.Double location=resourceMap.get(resIndex).getCoordinate();
+                             resourceMap.remove(resIndex);
+                             if (remaining!=0){
+                                 resourceMap.put(resIndex, new ResourceInfo(type, remaining, location)); }
+                             break;
+
+                         case"DEPLETED":
+                             roverMap.remove(messageArray[1]);
+                     }
+
+                 }
+                 messages.clear();
+
+             }
+             System.out.println("ID: " + getID() + "END OF PARSE REACHED");
+     }
+
+     //looks OK
+     //BROADCAST TO TEAM DOES NOT SEND TO SELF, BEFORE THIS METHOD IS CALLED UPDATE ROVERS OWN RESOURCE/ROVERMAP
+     void broadcastStatus() {
+         //format"Rover,ID,xCo,yCo,Speed,Capacity,Energy,Scan,ResType,ScannerNo
+         String message = "ROVER," +
+                 getID() +
+                 "," +
+                 roverInfo.getRelativePosition().getX() +
+                 "," +
+                 roverInfo.getRelativePosition().getY() +
+                 "," +
+                 roverInfo.getSpeed() +
+                 "," +
+                 roverInfo.getCapacity() +
+                 "," +
+                 getEnergy() +
+                 "," +
+                 roverInfo.getScanRange() +
+                 "," +
+                 roverInfo.getResourceType()+
+                 "," +
+                 roverInfo.getScannerNo();
+         System.out.println("Rover ID: " + getID() + " From broadcast status: " + message);
+         broadCastToTeam(message);
+         System.out.println("Rover ID: " + getID() + "Message broadcasted");
+     }
+
+
+ }

@@ -1,4 +1,7 @@
 package rover;
+/* Each rover is an individual rover that works on part of the map*/
+
+
 
 public class CompetitiveRover extends MyRover {
     public CompetitiveRover(){

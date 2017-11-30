@@ -2,6 +2,7 @@ package rover;
 
 import java.awt.geom.Point2D;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public abstract class CarryRover extends MyRover {
     private int moveState;

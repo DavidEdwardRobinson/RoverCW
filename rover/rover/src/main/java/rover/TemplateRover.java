@@ -29,12 +29,12 @@ public class TemplateRover extends MyRover {
         roverInfo = new RoverInfo(speed, capacity, getEnergy(), scanRange, resourceType, new Point2D.Double(0, 0), capacity);
         scanComplete = false;
         scanSquareLength = Math.sqrt(Math.pow(4 * scanRange, 2) / 2);
-        noXScans = (int) Math.ceil(getWorldWidth() / scanSquareLength);
+        scansPerRow = (int) Math.ceil(getWorldWidth() / scanSquareLength);
         resourceMap = new HashMap<>();
         roverMap = new HashMap<>();
-        scanIndex = 0;
+        resourceIndex = 0;
         toScan = getWorldResources();
-        scanX = 1; //start with scan, set index to 1,1
+        scanXIndex = 1; //start with scan, set index to 1,1
         moveState = 0;
         allCollected=false;
         //Information needed to initialise rover, would have liked to have put this in the
